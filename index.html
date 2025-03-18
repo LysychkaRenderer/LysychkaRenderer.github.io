@@ -21,9 +21,46 @@
             border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
-        .controls-panel input { cursor: pointer; }
+        .controls-panel input[type="file"] {
+            background: #444;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls-panel label {
+            font-size: 14px;
+        }
+        .controls-panel input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 6px;
+            background: #555;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .controls-panel input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #f39c12;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .controls-panel input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #f39c12;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
