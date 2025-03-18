@@ -86,7 +86,7 @@
         Натисніть "Вибрати файл", щоб завантажити 3D модель (.gltf або .glb).</p>
     </div>
     <script>
-        let scene, camera, renderer, controls, envMap, model;
+        let scene, camera, renderer, controls, envMap, model, modelParent;
         init();
 
         function init() {
@@ -128,9 +128,13 @@
                 reader.onload = function (e) {
                     const loader = new THREE.GLTFLoader();
                     loader.parse(e.target.result, '', function (gltf) {
-                        if (model) scene.remove(model);
+                        if (model) scene.remove(modelParent);
                         model = gltf.scene;
-                        scene.add(model);
+
+                        // Створюємо батьківський об'єкт для моделі
+                        modelParent = new THREE.Object3D();
+                        modelParent.add(model);
+                        scene.add(modelParent);
 
                         // Центруємо модель на сцені
                         const box = new THREE.Box3().setFromObject(model);
@@ -150,8 +154,8 @@
         });
 
         function updateModelRotation(event) {
-            if (model) {
-                model.rotation.y = parseFloat(event.target.value);
+            if (modelParent) {
+                modelParent.rotation.y = parseFloat(event.target.value);
             }
         }
 
